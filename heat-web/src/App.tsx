@@ -1,19 +1,15 @@
-import { useContext } from 'react';
-import { LoginBox } from './components/LoginBox';
-import { MessageList } from './components/MessageList';
-import { SendMessageForm } from './components/SendMessageForm';
+import { BrowserRouter } from 'react-router-dom';
 
-import { AuthContext } from './contexts/auth';
+import { Routes } from './routes';
 
 import { Container } from './styles/app';
 
 export function App() {
-  const { authenticatedUser } = useContext(AuthContext);
-
   return (
-    <Container isSigned={!!authenticatedUser}>
-      <MessageList />
-      {authenticatedUser ? <SendMessageForm /> : <LoginBox />}
-    </Container>
+    <BrowserRouter>
+      <Container>
+        <Routes />
+      </Container>
+    </BrowserRouter>
   );
 }
