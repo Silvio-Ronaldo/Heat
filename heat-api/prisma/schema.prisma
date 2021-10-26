@@ -29,3 +29,13 @@ model Message {
 
   @@map("messages")
 }
+
+model Room {
+  id              String   @id @default(uuid())
+  title           String
+  primary_color   String
+  secondary_color String
+  created_at      DateTime @default(now())
+
+  @@map("rooms")
+}

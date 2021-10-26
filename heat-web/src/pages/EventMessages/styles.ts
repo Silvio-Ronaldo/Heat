@@ -10,10 +10,11 @@ export const Container = styled.main<EventContainerProps>`
   max-width: 1200px;
   height: 100vh;
   margin: 0 auto;
+  width: 100vw;
 
   display: grid;
-  grid-template-columns: 1fr 453px;
-  column-gap: 120px;
+  grid-template-columns: 1fr 275px 453px;
+  column-gap: 60px;
   position: relative;
 
   ${props =>

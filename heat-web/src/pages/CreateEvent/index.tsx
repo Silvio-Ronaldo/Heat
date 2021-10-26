@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { VscDeviceCamera } from 'react-icons/vsc';
+import { useHistory } from 'react-router-dom';
+
+import { api } from '../../services/api';
 
 import { Header } from '../../components/Header';
 
@@ -15,14 +18,37 @@ import {
 
 import bannerGirl from '../../assets/banner-girl.png';
 
+type RoomData = {
+  id: string;
+  title: string;
+  primary_color: string;
+  secondary_color: string;
+};
+
 export function CreateEvent() {
+  const history = useHistory();
+
   const [eventName, setEventName] = useState('');
   const [primaryColor, setPrimaryColor] = useState('');
   const [secondaryColor, setSecondaryColor] = useState('');
 
   function handleLogoChange() {}
 
-  function handleCreateEventForm() {}
+  async function handleCreateEventForm(event: FormEvent) {
+    event.preventDefault();
+
+    if (eventName.trim() === '') {
+      return;
+    }
+
+    const { data } = await api.post<RoomData>('/rooms', {
+      title: eventName,
+      primary_color: primaryColor,
+      secondary_color: secondaryColor,
+    });
+
+    history.push(`/events/${data.id}`);
+  }
 
   return (
     <Container>
@@ -50,6 +76,8 @@ export function CreateEvent() {
               id="eventName"
               name="eventName"
               placeholder="Qual o nome do evento?"
+              onChange={event => setEventName(event.target.value)}
+              value={eventName}
             />
 
             <Colors>
@@ -59,6 +87,8 @@ export function CreateEvent() {
                   type="color"
                   id="eventPrimaryColor"
                   name="eventPrimaryColor"
+                  onChange={event => setPrimaryColor(event.target.value)}
+                  value={primaryColor}
                 />
               </section>
 
@@ -68,6 +98,8 @@ export function CreateEvent() {
                   type="color"
                   id="eventSecondaryColor"
                   name="eventSecondaryColor"
+                  onChange={event => setSecondaryColor(event.target.value)}
+                  value={secondaryColor}
                 />
               </section>
             </Colors>
