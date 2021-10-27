@@ -24,7 +24,7 @@ export const Container = styled.main<EventContainerProps>`
         content: '';
         height: 100vh;
         width: 18.25rem;
-        background: url(${backgroundImg}) no-repeat;
+        background: linear-gradient(180deg, #ff4500 0%, #fb1528 100%);
         background-size: cover;
         position: absolute;
         right: -3.75rem;
