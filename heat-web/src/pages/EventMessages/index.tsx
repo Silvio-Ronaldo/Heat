@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { LoginBox } from '../../components/LoginBox';
@@ -19,6 +19,10 @@ export function EventMessages() {
 
   const params = useParams<RoomParams>();
   const code = params.id;
+
+  useEffect(() => {
+    localStorage.setItem('@heat:code', code);
+  }, [code]);
 
   return (
     <Container isSigned={!!authenticatedUser}>
