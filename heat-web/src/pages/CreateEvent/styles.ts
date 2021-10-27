@@ -117,5 +117,20 @@ export const Colors = styled.div`
 export const Illustration = styled.aside`
   position: absolute;
   right: 0;
-  top: -200px;
+  top: -178px;
+  background-color: #fb4500;
+  height: 100vh;
+  width: 30%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem 0;
+
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 `;

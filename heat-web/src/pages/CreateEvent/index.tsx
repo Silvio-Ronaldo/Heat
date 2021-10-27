@@ -1,10 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { VscDeviceCamera } from 'react-icons/vsc';
 import { useHistory } from 'react-router-dom';
+import Lottie from 'react-lottie';
 
 import { api } from '../../services/api';
 
 import { Header } from '../../components/Header';
+
+import flameAnimation from '../../assets/18587-flame-animation.json';
 
 import {
   Container,
@@ -15,8 +18,6 @@ import {
   Colors,
   Illustration,
 } from './styles';
-
-import bannerGirl from '../../assets/banner-girl.png';
 
 type RoomData = {
   id: string;
@@ -31,6 +32,15 @@ export function CreateEvent() {
   const [eventName, setEventName] = useState('');
   const [primaryColor, setPrimaryColor] = useState('');
   const [secondaryColor, setSecondaryColor] = useState('');
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: flameAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   function handleLogoChange() {}
 
@@ -109,7 +119,8 @@ export function CreateEvent() {
         </section>
 
         <Illustration>
-          <img src={bannerGirl} alt="Girl on phone" />
+          <p>VAI PEGAR FOGO!</p>
+          <Lottie options={defaultOptions} height={300} width={300} />
         </Illustration>
       </Content>
     </Container>
