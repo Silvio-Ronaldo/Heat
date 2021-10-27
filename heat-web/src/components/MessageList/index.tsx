@@ -30,7 +30,15 @@ socket.on('new_message', (newMessage: Message) => {
   messagesQueue.push(newMessage);
 });
 
-export function MessageList() {
+type MessageListProps = {
+  primaryColor: string;
+  secondaryColor: string;
+};
+
+export function MessageList({
+  primaryColor,
+  secondaryColor,
+}: MessageListProps) {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
@@ -61,7 +69,10 @@ export function MessageList() {
             <li key={message.id}>
               <MessageContent>{message.text}</MessageContent>
               <MessageUser>
-                <UserImage>
+                <UserImage
+                  primaryColor={primaryColor}
+                  secondaryColor={secondaryColor}
+                >
                   <img src={message.user.avatar_url} alt={message.user.name} />
                 </UserImage>
                 <span>{message.user.name}</span>

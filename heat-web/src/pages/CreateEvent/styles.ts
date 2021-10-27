@@ -20,8 +20,9 @@ export const Title = styled.h1`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 75%;
   padding: 0.5rem 0;
+  align-items: center;
 
   input {
     width: 25rem;
@@ -42,6 +43,7 @@ export const Form = styled.form`
     color: white;
     background-color: orangered;
     font-size: 1rem;
+    font-weight: bold;
 
     &:hover {
       filter: brightness(0.9);
@@ -96,6 +98,7 @@ export const LogoInput = styled.div`
 
 export const Colors = styled.div`
   display: flex;
+  margin-left: 2.7rem;
 
   section {
     display: flex;
@@ -105,7 +108,7 @@ export const Colors = styled.div`
     input {
       width: 3rem;
       height: 1.5rem;
-      margin: 0 4rem 0 1rem;
+      margin: 0 3rem 0 1rem;
       padding: 0;
     }
   }

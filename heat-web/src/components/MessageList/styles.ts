@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type UserImageProps = {
+  primaryColor: string;
+  secondaryColor: string;
+};
 
 export const Container = styled.section`
   display: flex;
@@ -46,11 +51,19 @@ export const MessageUser = styled.div`
   }
 `;
 
-export const UserImage = styled.div`
+export const UserImage = styled.div<UserImageProps>`
   padding: 0.125rem;
-  background: linear-gradient(100deg, #ff008e 0%, #ffcd1e 100%);
   border-radius: 50%;
   line-height: 0;
+
+  ${({ primaryColor, secondaryColor }) =>
+    css`
+      background: linear-gradient(
+        100deg,
+        ${primaryColor} 0%,
+        ${secondaryColor} 100%
+      );
+    `}
 
   img {
     width: 1.875rem;

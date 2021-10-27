@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type UserImageProps = {
+  primaryColor: string;
+  secondaryColor: string;
+};
 
 export const Container = styled.section`
   background: #1b1b1f;
@@ -53,11 +58,19 @@ export const UserInformation = styled.header`
   }
 `;
 
-export const UserImage = styled.div`
+export const UserImage = styled.div<UserImageProps>`
   padding: 0.1875rem;
-  background: linear-gradient(100deg, #ff008e 0%, #ffcf1e 100%);
   border-radius: 50%;
   line-height: 0;
+
+  ${({ primaryColor, secondaryColor }) =>
+    css`
+      background: linear-gradient(
+        100deg,
+        ${primaryColor} 0%,
+        ${secondaryColor} 100%
+      );
+    `}
 
   img {
     width: 5.875rem;
@@ -104,7 +117,7 @@ export const SendMessage = styled.form`
 
   button {
     align-self: flex-end;
-    background: #ff008e;
+    background: #ff4500;
     margin: 1.5rem;
     border: 0;
     cursor: pointer;

@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+type ContainerProps = {
+  primaryColor: string;
+  secondaryColor: string;
+};
+
+export const Container = styled.button<ContainerProps>`
   height: 2.5rem;
   border-radius: 0.5rem;
   overflow: hidden;

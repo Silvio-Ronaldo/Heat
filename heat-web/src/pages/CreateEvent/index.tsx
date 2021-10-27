@@ -104,7 +104,7 @@ export function CreateEvent() {
               </section>
             </Colors>
 
-            <button type="submit">Criar evento</button>
+            <button type="submit">CRIAR EVENTO</button>
           </Form>
         </section>
 

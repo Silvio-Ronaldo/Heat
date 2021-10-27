@@ -4,15 +4,25 @@ import { Container } from './styles';
 
 type RoomCodeProps = {
   code: string;
+  primaryColor: string;
+  secondaryColor: string;
 };
 
-export function RoomCode({ code }: RoomCodeProps) {
+export function RoomCode({
+  code,
+  primaryColor,
+  secondaryColor,
+}: RoomCodeProps) {
   function copyRoomCodeToClipboard() {
     navigator.clipboard.writeText(code);
   }
 
   return (
-    <Container onClick={copyRoomCodeToClipboard}>
+    <Container
+      onClick={copyRoomCodeToClipboard}
+      primaryColor={primaryColor}
+      secondaryColor={secondaryColor}
+    >
       <VscCopy size={16} color="#ffffff" />
       <span>#{code}</span>
     </Container>

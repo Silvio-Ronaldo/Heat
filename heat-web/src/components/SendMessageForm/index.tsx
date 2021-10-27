@@ -12,7 +12,15 @@ import {
   SendMessage,
 } from './styles';
 
-export function SendMessageForm() {
+type SendMessageFormProps = {
+  primaryColor: string;
+  secondaryColor: string;
+};
+
+export function SendMessageForm({
+  primaryColor,
+  secondaryColor,
+}: SendMessageFormProps) {
   const { authenticatedUser, signOut } = useContext(AuthContext);
   const [message, setMessage] = useState('');
 
@@ -33,7 +41,7 @@ export function SendMessageForm() {
       </SignOutButton>
 
       <UserInformation>
-        <UserImage>
+        <UserImage primaryColor={primaryColor} secondaryColor={secondaryColor}>
           <img
             src={authenticatedUser?.avatar_url}
             alt={authenticatedUser?.name}
