@@ -26,7 +26,7 @@ router.get('/messages/last3', getLast3MessagesController.handle);
 
 router.get('/profile', ensureAuthenticated, userProfileController.handle);
 
-router.post('/rooms', createRoomController.handle);
+router.post('/rooms', ensureAuthenticated, createRoomController.handle);
 
 router.get('/rooms/:id', getEventDataController.handle);
 
