@@ -9,11 +9,13 @@ export function GithubLoading() {
   const history = useHistory();
 
   useEffect(() => {
-    const roomCode = localStorage.getItem('@heat:code');
+    const page = localStorage.getItem('@heat:page');
 
-    setTimeout(() => {
-      history.push(`/events/${roomCode}`);
-    }, 3000);
+    if (page) {
+      setTimeout(() => {
+        history.push(`${page}`);
+      }, 3000);
+    }
   }, [history]);
 
   return (

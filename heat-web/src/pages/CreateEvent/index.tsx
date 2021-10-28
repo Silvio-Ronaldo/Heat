@@ -1,11 +1,13 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useContext, useEffect } from 'react';
 import { VscDeviceCamera } from 'react-icons/vsc';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
 
 import { api } from '../../services/api';
+import { AuthContext } from '../../contexts/auth';
 
 import { Header } from '../../components/Header';
+import { GithubSignIn } from '../../components/GithubSignIn';
 
 import flameAnimation from '../../assets/18587-flame-animation.json';
 
@@ -29,6 +31,8 @@ type RoomData = {
 export function CreateEvent() {
   const history = useHistory();
 
+  const { signInUrl, authenticatedUser } = useContext(AuthContext);
+
   const [eventName, setEventName] = useState('');
   const [primaryColor, setPrimaryColor] = useState('');
   const [secondaryColor, setSecondaryColor] = useState('');
@@ -42,12 +46,23 @@ export function CreateEvent() {
     },
   };
 
+  useEffect(() => {
+    const page = '/new';
+    localStorage.setItem('@heat:page', page);
+  }, []);
+
   function handleLogoChange() {}
 
   async function handleCreateEventForm(event: FormEvent) {
     event.preventDefault();
 
+    if (!authenticatedUser) {
+      alert('Efetue o login para criar um evento');
+      return;
+    }
+
     if (eventName.trim() === '') {
+      alert('Adicione um nome ao evento');
       return;
     }
 
@@ -121,6 +136,7 @@ export function CreateEvent() {
         <Illustration>
           <p>VAI PEGAR FOGO!</p>
           <Lottie options={defaultOptions} height={300} width={300} />
+          {!authenticatedUser && <GithubSignIn href={signInUrl} />}
         </Illustration>
       </Content>
     </Container>

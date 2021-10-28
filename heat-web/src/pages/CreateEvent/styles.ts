@@ -133,4 +133,8 @@ export const Illustration = styled.aside`
     font-size: 2rem;
     font-weight: bold;
   }
+
+  a {
+    margin-top: 10rem;
+  }
 `;

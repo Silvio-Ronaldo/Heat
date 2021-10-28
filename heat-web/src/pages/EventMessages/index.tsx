@@ -40,7 +40,8 @@ export function EventMessages() {
       setSecondaryColor(data.secondary_color);
     }
 
-    localStorage.setItem('@heat:code', code);
+    const page = `/events/${code}`;
+    localStorage.setItem('@heat:page', page);
     handleEventData();
   }, [code]);
 
