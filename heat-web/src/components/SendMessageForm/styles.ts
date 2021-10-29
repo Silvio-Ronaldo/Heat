@@ -34,6 +34,22 @@ export const SignOutButton = styled.button`
   }
 `;
 
+export const OpenAdminRoom = styled.button`
+  background: transparent;
+  border: 0;
+  color: #c4c4cc;
+
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;
+
 export const UserInformation = styled.header`
   display: flex;
   flex-direction: column;

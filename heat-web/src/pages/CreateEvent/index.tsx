@@ -72,7 +72,7 @@ export function CreateEvent() {
       secondary_color: secondaryColor,
     });
 
-    history.push(`/events/${data.id}`);
+    history.push(`/admin/events/${data.id}`);
   }
 
   return (

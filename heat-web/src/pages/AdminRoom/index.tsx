@@ -20,6 +20,7 @@ type EventData = {
   primary_color: string;
   secondary_color: string;
   total_messages: number;
+  user_id: string;
 };
 
 export function AdminRoom() {
@@ -38,6 +39,10 @@ export function AdminRoom() {
     async function handleEventData() {
       const { data } = await api.get<EventData>(`/rooms/${code}`);
 
+      if (data.user_id !== authenticatedUser?.id) {
+        history.push(`/events/${code}`);
+      }
+
       setTitle(data.title);
       setPrimaryColor(data.primary_color);
       setSecondaryColor(data.secondary_color);
@@ -45,7 +50,7 @@ export function AdminRoom() {
     }
 
     handleEventData();
-  }, [code]);
+  }, [code, authenticatedUser?.id, history]);
 
   async function handleDeleteRoom() {
     await api.delete(`/rooms/${code}`);

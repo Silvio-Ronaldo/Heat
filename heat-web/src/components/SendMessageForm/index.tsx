@@ -1,6 +1,6 @@
 import { useContext, useState, FormEvent } from 'react';
-import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
-import { useParams } from 'react-router-dom';
+import { VscGithubInverted, VscSettings, VscSignOut } from 'react-icons/vsc';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/auth';
 import { api } from '../../services/api';
@@ -8,6 +8,7 @@ import { api } from '../../services/api';
 import {
   Container,
   SignOutButton,
+  OpenAdminRoom,
   UserInformation,
   UserImage,
   SendMessage,
@@ -16,6 +17,7 @@ import {
 type SendMessageFormProps = {
   primaryColor: string;
   secondaryColor: string;
+  userId: string;
 };
 
 type RoomParams = {
@@ -25,11 +27,14 @@ type RoomParams = {
 export function SendMessageForm({
   primaryColor,
   secondaryColor,
+  userId,
 }: SendMessageFormProps) {
   const { authenticatedUser, signOut } = useContext(AuthContext);
   const [message, setMessage] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const params = useParams<RoomParams>();
+  const history = useHistory();
 
   async function handleSendMessage(event: FormEvent) {
     event.preventDefault();
@@ -51,11 +56,28 @@ export function SendMessageForm({
     }
   }
 
+  async function handleSignOut() {
+    signOut();
+
+    history.push(`/events/${params.id}`);
+  }
+
+  async function handleOpenAdminRoom() {
+    setIsAdmin(true);
+    history.push(`/admin/events/${params.id}`);
+  }
+
   return (
     <Container>
-      <SignOutButton onClick={signOut}>
+      <SignOutButton onClick={handleSignOut}>
         <VscSignOut size={32} />
       </SignOutButton>
+
+      {authenticatedUser?.id === userId && !isAdmin && (
+        <OpenAdminRoom onClick={handleOpenAdminRoom}>
+          <VscSettings size={32} />
+        </OpenAdminRoom>
+      )}
 
       <UserInformation>
         <UserImage primaryColor={primaryColor} secondaryColor={secondaryColor}>
