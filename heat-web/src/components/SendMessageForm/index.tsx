@@ -1,5 +1,6 @@
 import { useContext, useState, FormEvent } from 'react';
 import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
+import { useParams } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/auth';
 import { api } from '../../services/api';
@@ -17,6 +18,10 @@ type SendMessageFormProps = {
   secondaryColor: string;
 };
 
+type RoomParams = {
+  id: string;
+};
+
 export function SendMessageForm({
   primaryColor,
   secondaryColor,
@@ -24,11 +29,23 @@ export function SendMessageForm({
   const { authenticatedUser, signOut } = useContext(AuthContext);
   const [message, setMessage] = useState('');
 
+  const params = useParams<RoomParams>();
+
   async function handleSendMessage(event: FormEvent) {
     event.preventDefault();
 
     if (message.trim()) {
-      await api.post('/messages', { message });
+      await api.post(
+        '/messages',
+        {
+          message,
+        },
+        {
+          headers: {
+            code: params.id,
+          },
+        },
+      );
 
       setMessage('');
     }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
 import { api } from '../../services/api';
@@ -35,11 +36,17 @@ type MessageListProps = {
   secondaryColor: string;
 };
 
+type RoomParams = {
+  id: string;
+};
+
 export function MessageList({
   primaryColor,
   secondaryColor,
 }: MessageListProps) {
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const params = useParams<RoomParams>();
 
   useEffect(() => {
     setInterval(() => {
@@ -54,10 +61,16 @@ export function MessageList({
   }, []);
 
   useEffect(() => {
-    api.get<Message[]>('messages/last3').then(response => {
-      setMessages(response.data);
-    });
-  }, []);
+    api
+      .get<Message[]>('messages/last3', {
+        headers: {
+          code: params.id,
+        },
+      })
+      .then(response => {
+        setMessages(response.data);
+      });
+  }, [params.id]);
 
   return (
     <Container>
