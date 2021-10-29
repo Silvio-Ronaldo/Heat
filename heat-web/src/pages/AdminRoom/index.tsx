@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { LoginBox } from '../../components/LoginBox';
+import { VscClose, VscComment } from 'react-icons/vsc';
 import { MessageList } from '../../components/MessageList';
 import { SendMessageForm } from '../../components/SendMessageForm';
 import { RoomCode } from '../../components/RoomCode';
 
 import { AuthContext } from '../../contexts/auth';
 
-import { Container } from './styles';
+import { Container, CenterPanel, CloseButton } from './styles';
 import { api } from '../../services/api';
 
-type RoomParams = {
+type AdminRoomParams = {
   id: string;
 };
 
@@ -21,14 +21,14 @@ type EventData = {
   secondary_color: string;
 };
 
-export function EventMessages() {
+export function AdminRoom() {
   const { authenticatedUser } = useContext(AuthContext);
 
   const [title, setTitle] = useState('');
   const [primaryColor, setPrimaryColor] = useState('');
   const [secondaryColor, setSecondaryColor] = useState('');
 
-  const params = useParams<RoomParams>();
+  const params = useParams<AdminRoomParams>();
   const code = params.id;
 
   useEffect(() => {
@@ -40,8 +40,6 @@ export function EventMessages() {
       setSecondaryColor(data.secondary_color);
     }
 
-    const page = `/events/${code}`;
-    localStorage.setItem('@heat:page', page);
     handleEventData();
   }, [code]);
 
@@ -55,18 +53,29 @@ export function EventMessages() {
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
       />
-      <RoomCode
-        code={code}
-        primaryColor={primaryColor}
-        secondaryColor={secondaryColor}
-      />
-      {authenticatedUser ? (
+
+      <CenterPanel>
+        <RoomCode
+          code={code}
+          primaryColor={primaryColor}
+          secondaryColor={secondaryColor}
+        />
+
+        <span>
+          39
+          <VscComment color="#ff4500" size={48} />
+        </span>
+
+        <CloseButton type="button">
+          <VscClose size={48} />
+        </CloseButton>
+      </CenterPanel>
+
+      {authenticatedUser && (
         <SendMessageForm
           primaryColor={primaryColor}
           secondaryColor={secondaryColor}
         />
-      ) : (
-        <LoginBox />
       )}
     </Container>
   );

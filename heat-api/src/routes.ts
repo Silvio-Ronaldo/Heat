@@ -8,6 +8,7 @@ import GetLast3MessagesController from './controllers/GetLast3MessagesController
 import UserProfileController from './controllers/UserProfileController';
 import CreateRoomController from './controllers/CreateRoomController';
 import GetEventDataController from './controllers/GetEventDataController';
+import DeleteRoomController from './controllers/DeleteRoomController';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ const getLast3MessagesController = new GetLast3MessagesController();
 const userProfileController = new UserProfileController();
 const createRoomController = new CreateRoomController();
 const getEventDataController = new GetEventDataController();
+const deleteRoomController = new DeleteRoomController();
 
 router.post('/authenticate', authenticateUserController.handle);
 
@@ -29,5 +31,7 @@ router.get('/profile', ensureAuthenticated, userProfileController.handle);
 router.post('/rooms', ensureAuthenticated, createRoomController.handle);
 
 router.get('/rooms/:id', getEventDataController.handle);
+
+router.delete('/rooms/:id', deleteRoomController.handle);
 
 export default router;

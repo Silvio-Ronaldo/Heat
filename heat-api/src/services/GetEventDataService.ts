@@ -12,7 +12,18 @@ class GetEventDataService {
       },
     });
 
-    return room;
+    const totalMessages = await prismaClient.message.count({
+      where: {
+        room_id: roomCode,
+      },
+    });
+
+    const formattedRoom = {
+      ...room,
+      totalMessages,
+    };
+
+    return formattedRoom;
   }
 }
 
