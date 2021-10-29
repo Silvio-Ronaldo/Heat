@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { VscClose, VscComment } from 'react-icons/vsc';
 import { MessageList } from '../../components/MessageList';
@@ -19,6 +19,7 @@ type EventData = {
   title: string;
   primary_color: string;
   secondary_color: string;
+  totalMessages: number;
 };
 
 export function AdminRoom() {
@@ -27,7 +28,9 @@ export function AdminRoom() {
   const [title, setTitle] = useState('');
   const [primaryColor, setPrimaryColor] = useState('');
   const [secondaryColor, setSecondaryColor] = useState('');
+  const [totalComments, setTotalComments] = useState(0);
 
+  const history = useHistory();
   const params = useParams<AdminRoomParams>();
   const code = params.id;
 
@@ -38,10 +41,17 @@ export function AdminRoom() {
       setTitle(data.title);
       setPrimaryColor(data.primary_color);
       setSecondaryColor(data.secondary_color);
+      setTotalComments(data.totalMessages);
     }
 
     handleEventData();
   }, [code]);
+
+  async function handleDeleteRoom() {
+    await api.delete(`/rooms/${code}`);
+
+    history.push('/');
+  }
 
   return (
     <Container
@@ -62,11 +72,11 @@ export function AdminRoom() {
         />
 
         <span>
-          39
+          {totalComments}
           <VscComment color="#ff4500" size={48} />
         </span>
 
-        <CloseButton type="button">
+        <CloseButton type="button" onClick={handleDeleteRoom}>
           <VscClose size={48} />
         </CloseButton>
       </CenterPanel>
