@@ -16,7 +16,7 @@ model User {
 
   message Message[]
 
-  Room Room[]
+  room Room[]
   @@map("users")
 }
 
@@ -27,6 +27,9 @@ model Message {
 
   user    User   @relation(fields: [user_id], references: [id])
   user_id String
+
+  room    Room   @relation(fields: [room_id], references: [id])
+  room_id String
 
   @@map("messages")
 }
@@ -41,5 +44,6 @@ model Room {
   user    User   @relation(fields: [user_id], references: [id])
   user_id String
 
+  message Message[]
   @@map("rooms")
 }
