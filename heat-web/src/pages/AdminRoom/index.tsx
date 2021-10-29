@@ -19,7 +19,7 @@ type EventData = {
   title: string;
   primary_color: string;
   secondary_color: string;
-  totalMessages: number;
+  total_messages: number;
 };
 
 export function AdminRoom() {
@@ -41,7 +41,7 @@ export function AdminRoom() {
       setTitle(data.title);
       setPrimaryColor(data.primary_color);
       setSecondaryColor(data.secondary_color);
-      setTotalComments(data.totalMessages);
+      setTotalComments(data.total_messages);
     }
 
     handleEventData();

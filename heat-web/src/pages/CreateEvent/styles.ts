@@ -22,7 +22,6 @@ export const Form = styled.form`
   flex-direction: column;
   width: 75%;
   padding: 0.5rem 0;
-  align-items: center;
 
   input {
     width: 25rem;
@@ -98,7 +97,6 @@ export const LogoInput = styled.div`
 
 export const Colors = styled.div`
   display: flex;
-  margin-left: 2.7rem;
 
   section {
     display: flex;
