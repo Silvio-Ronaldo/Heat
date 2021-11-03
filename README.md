@@ -32,12 +32,13 @@
   📋 Table of contents
 </h2>
 <ul>
-  <li><a href="https://github.com/Silvio-Ronaldo/psyheart-web#-how-it-works">How it works</a></li>
-  <li><a href="https://github.com/Silvio-Ronaldo/psyheart-web#%EF%B8%8F-demonstration">Demonstration</a></li>
-  <li><a href="https://github.com/Silvio-Ronaldo/psyheart-web#-upcoming-features">Upcoming features</a></li>
-  <li><a href="https://github.com/Silvio-Ronaldo/psyheart-web#%EF%B8%8F-technologies">Technologies</a></li>
-  <li><a href="https://github.com/Silvio-Ronaldo/psyheart-web#-author">Author</a></li>
-  <li><a href="https://github.com/Silvio-Ronaldo/psyheart-web#%EF%B8%8F-license">License</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#-how-it-works">How it works</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#%EF%B8%8F-demonstration">Demonstration</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#-upcoming-features">Upcoming features</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#%EF%B8%8F-running-locally">Running locally</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#%EF%B8%8F-technologies">Technologies</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#-author">Author</a></li>
+  <li><a href="https://github.com/Silvio-Ronaldo/Heat#%EF%B8%8F-license">License</a></li>
 </ul></br>
 
 
