@@ -54,14 +54,13 @@
 <h2>🖥️ Demonstration</h2>
 <h3>Web</h3>
   <p align="center">
-    <img src="" alt="Heat web" />
+    <img src="./assets/Heat-web-1.gif" alt="Heat web" />
   </p></br>
   
-<h3>Mobile</h3>
   <p align="center">
-    <img src="" alt="Heat mobile" />
+    <img src="./assets/Heat-web-2.gif" alt="Heat web" />
   </p></br>
-  
+
   
 
 
@@ -79,6 +78,7 @@
   <li><strong>Installing Yarn 1:</strong> Yarn is a package manager that you can download directly from the website by clicking <a href="https://classic.yarnpkg.com/en/docs/install#windows-stable">here.</a> If you prefer, use the NPM.</li></br>
   <li><strong>Code Editor (optional):</strong> Make sure you have a code editor of your choice. I recommend using the VS Code. If you need to, download it <a href="https://code.visualstudio.com/Download">here.</a></li>
 </ol></br>
+
 
 
 <h3>🎲 Running the backend server</h3>
@@ -141,6 +141,28 @@
   </li>
   <li>After these steps, the mobile application must start on your emulator or on your device, according to your choice.</li>
 </ol></br>
+
+
+<h3>😼 Configuring OAuth App on Github</h3>
+<ol>
+  <li>To login with Github, you need to create an OAuth App. To do this, click on your user's avatar in the upper-right corner.</li>
+  <li>Select Settings. Then, in the left menu click on Developer Settings.</li>
+  <li>Click on OAuth Apps and create a new app.</li>
+  <li>Enter the name and description you want.</li>
+  <li>In Homepage URL, type: http://localhost:3333</li>
+  <li>In Authorization Callback URL, type: http://localhost:3000/loading</li>
+  <li>That's it, you've set up an OAuth App.</li>
+</ol></br>
+
+
+<h3>🧷 Connecting your OAuth App to Heat</h3>
+<ol>
+  <li>IMPORTANT: Go to the heat-web directory and within src/contexts/auth.tsx replace the constant value of GITHUB_CLIENT_ID with the Client ID value of your newly created OAuth App.</li>
+  <li>IMPORTANT: Go to the heat-api directory and enter the .env.example file. Rename the file to .env</li>
+  <li>IMPORTANT: Add your OAuth App's Client ID and Client Secret credentials to GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET, respectively.</li>
+  <li>IMPORTANT: Go to a hash generator site like <a href="https://www.md5hashgenerator.com">MD5</a> for example and generate a random hash. Add the hash to JWT_SECRET.</li>
+</ol></br>
+
 
 
 
