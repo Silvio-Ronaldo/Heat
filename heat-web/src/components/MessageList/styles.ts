@@ -12,9 +12,10 @@ export const Container = styled.section`
   justify-content: space-between;
   align-items: flex-start;
 
-  > img {
+  > h1 {
     height: 1.5rem;
     margin: 2rem 0;
+    color: white;
   }
 `;
 

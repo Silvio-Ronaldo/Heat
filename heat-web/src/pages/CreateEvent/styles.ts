@@ -10,11 +10,12 @@ export const Container = styled.main`
 export const Content = styled.div`
   display: flex;
   position: relative;
+  padding-top: 10rem;
 `;
 
 export const Title = styled.h1`
-  width: 50vw;
-  font-size: 1.5rem;
+  width: 40vw;
+  font-size: 1.25rem;
 `;
 
 export const Form = styled.form`
@@ -22,12 +23,14 @@ export const Form = styled.form`
   flex-direction: column;
   width: 75%;
   padding: 0.5rem 0;
+  margin-top: 2rem;
 
   input {
     width: 25rem;
     height: 3rem;
     padding: 0 1rem;
     margin: 1rem 0;
+    font-size: 1rem;
 
     &:focus {
       outline: none;
@@ -47,50 +50,6 @@ export const Form = styled.form`
     &:hover {
       filter: brightness(0.9);
       cursor: pointer;
-    }
-  }
-`;
-
-export const LogoInput = styled.div`
-  margin-top: 24px;
-  position: relative;
-  height: 9rem;
-  width: 9rem;
-  margin-right: 2rem;
-
-  img {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 2rem;
-  }
-
-  label {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    background: #fb1528;
-    border-radius: 50%;
-    border: 0;
-    right: 0;
-    bottom: 0;
-    transition: background-color 0.2s;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 20px;
-      height: 20px;
-      color: #ffffff;
-    }
-
-    &:hover {
-      filter: brightness(0.8);
-    }
-
-    input {
-      display: none;
     }
   }
 `;

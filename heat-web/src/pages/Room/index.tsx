@@ -55,6 +55,7 @@ export function Room() {
       secondaryColor={secondaryColor}
     >
       <MessageList
+        title={title}
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
       />
@@ -68,6 +69,7 @@ export function Room() {
           primaryColor={primaryColor}
           secondaryColor={secondaryColor}
           userId={userId}
+          isAdmin={false}
         />
       ) : (
         <LoginBox />

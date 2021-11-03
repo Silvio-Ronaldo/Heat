@@ -4,8 +4,6 @@ import { io } from 'socket.io-client';
 
 import { api } from '../../services/api';
 
-import logoImg from '../../assets/logo.svg';
-
 import {
   Container,
   Messages,
@@ -32,6 +30,7 @@ socket.on('new_message', (newMessage: Message) => {
 });
 
 type MessageListProps = {
+  title: string;
   primaryColor: string;
   secondaryColor: string;
 };
@@ -41,6 +40,7 @@ type RoomParams = {
 };
 
 export function MessageList({
+  title,
   primaryColor,
   secondaryColor,
 }: MessageListProps) {
@@ -74,7 +74,7 @@ export function MessageList({
 
   return (
     <Container>
-      <img src={logoImg} alt="Heat 2021" />
+      <h1>{title}</h1>
 
       <Messages>
         {messages.map(message => {

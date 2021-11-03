@@ -34,7 +34,7 @@ export const SignOutButton = styled.button`
   }
 `;
 
-export const OpenAdminRoom = styled.button`
+export const AdminButton = styled.button`
   background: transparent;
   border: 0;
   color: #c4c4cc;

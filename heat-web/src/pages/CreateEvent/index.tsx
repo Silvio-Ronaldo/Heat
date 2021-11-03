@@ -1,5 +1,4 @@
 import { FormEvent, useState, useContext, useEffect } from 'react';
-import { VscDeviceCamera } from 'react-icons/vsc';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
 
@@ -16,7 +15,6 @@ import {
   Content,
   Title,
   Form,
-  LogoInput,
   Colors,
   Illustration,
 } from './styles';
@@ -51,8 +49,6 @@ export function CreateEvent() {
     localStorage.setItem('@heat:page', page);
   }, []);
 
-  function handleLogoChange() {}
-
   async function handleCreateEventForm(event: FormEvent) {
     event.preventDefault();
 
@@ -84,18 +80,6 @@ export function CreateEvent() {
           <Title>Adicione as informações do seu evento</Title>
 
           <Form onSubmit={handleCreateEventForm}>
-            <LogoInput>
-              <img
-                src="https://github.com/Silvio-Ronaldo.png"
-                alt="Logo do evento"
-              />
-              <label htmlFor="avatar">
-                <VscDeviceCamera />
-
-                <input type="file" id="avatar" onChange={handleLogoChange} />
-              </label>
-            </LogoInput>
-
             <input
               type="text"
               id="eventName"

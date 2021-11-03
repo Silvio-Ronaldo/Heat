@@ -43,6 +43,7 @@ export const CenterPanel = styled.section`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 7rem;
+  height: 50vh;
 
   > span {
     font-size: 2.5rem;
@@ -50,18 +51,5 @@ export const CenterPanel = styled.section`
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
-`;
-
-export const CloseButton = styled.button`
-  border: 0;
-  background-color: transparent;
-  color: #ffffff;
-  cursor: pointer;
-  transition: transform 0.5s, color 0.5s;
-
-  &:hover {
-    transform: scale(1.5);
-    color: #fb1528;
   }
 `;
