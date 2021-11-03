@@ -34,6 +34,7 @@ export const Form = styled.form`
     color: white;
     background-color: orangered;
     font-size: 1rem;
+    font-weight: bold;
 
     &:hover {
       filter: brightness(0.9);

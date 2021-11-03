@@ -13,7 +13,7 @@ export function CreateRoom() {
     <Container>
       <Title>Crie uma sala para o seu evento agora mesmo</Title>
 
-      <Button onClick={handleCreateRoom}>Criar sala</Button>
+      <Button onClick={handleCreateRoom}>CRIAR SALA</Button>
     </Container>
   );
 }

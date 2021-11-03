@@ -11,16 +11,18 @@ export function EnterRoom() {
   const [code, setCode] = useState('');
 
   async function handleEnterRoom(event: FormEvent) {
+    event.preventDefault();
+
     if (code.trim() === '') {
       return;
     }
 
-    // const room = await api.get(`/events/${code}`);
+    const { data } = await api.get(`/rooms/${code}`);
 
-    // if (!room) {
-    //  alert('A sala não existe');
-    //  return;
-    // }
+    if (!data) {
+      alert('A sala não existe');
+      return;
+    }
 
     history.push(`/events/${code}`);
   }
@@ -37,7 +39,7 @@ export function EnterRoom() {
           value={code}
           onChange={event => setCode(event.target.value)}
         />
-        <button type="submit">Entrar na sala</button>
+        <button type="submit">ENTRAR NA SALA</button>
       </Form>
     </Container>
   );

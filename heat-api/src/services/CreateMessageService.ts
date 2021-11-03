@@ -2,11 +2,17 @@ import prismaClient from '../prisma';
 
 import { io } from '../app';
 
+type CreateMessageProps = {
+  text: string;
+  code: string;
+  user_id: string;
+};
 class CreateMessageService {
-  async execute(text: string, user_id: string) {
+  async execute({ text, code, user_id }: CreateMessageProps) {
     const message = await prismaClient.message.create({
       data: {
         text,
+        room_id: code,
         user_id,
       },
       include: {

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
 import { api } from '../../services/api';
-
-import logoImg from '../../assets/logo.svg';
 
 import {
   Container,
@@ -30,8 +29,24 @@ socket.on('new_message', (newMessage: Message) => {
   messagesQueue.push(newMessage);
 });
 
-export function MessageList() {
+type MessageListProps = {
+  title: string;
+  primaryColor: string;
+  secondaryColor: string;
+};
+
+type RoomParams = {
+  id: string;
+};
+
+export function MessageList({
+  title,
+  primaryColor,
+  secondaryColor,
+}: MessageListProps) {
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const params = useParams<RoomParams>();
 
   useEffect(() => {
     setInterval(() => {
@@ -46,14 +61,20 @@ export function MessageList() {
   }, []);
 
   useEffect(() => {
-    api.get<Message[]>('messages/last3').then(response => {
-      setMessages(response.data);
-    });
-  }, []);
+    api
+      .get<Message[]>('messages/last3', {
+        headers: {
+          code: params.id,
+        },
+      })
+      .then(response => {
+        setMessages(response.data);
+      });
+  }, [params.id]);
 
   return (
     <Container>
-      <img src={logoImg} alt="Heat 2021" />
+      <h1>{title}</h1>
 
       <Messages>
         {messages.map(message => {
@@ -61,7 +82,10 @@ export function MessageList() {
             <li key={message.id}>
               <MessageContent>{message.text}</MessageContent>
               <MessageUser>
-                <UserImage>
+                <UserImage
+                  primaryColor={primaryColor}
+                  secondaryColor={secondaryColor}
+                >
                   <img src={message.user.avatar_url} alt={message.user.name} />
                 </UserImage>
                 <span>{message.user.name}</span>

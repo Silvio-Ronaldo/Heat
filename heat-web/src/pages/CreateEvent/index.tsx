@@ -1,28 +1,75 @@
-import { useState } from 'react';
-import { VscDeviceCamera } from 'react-icons/vsc';
+import { FormEvent, useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import Lottie from 'react-lottie';
+
+import { api } from '../../services/api';
+import { AuthContext } from '../../contexts/auth';
 
 import { Header } from '../../components/Header';
+import { GithubSignIn } from '../../components/GithubSignIn';
+
+import flameAnimation from '../../assets/18587-flame-animation.json';
 
 import {
   Container,
   Content,
   Title,
   Form,
-  LogoInput,
   Colors,
   Illustration,
 } from './styles';
 
-import bannerGirl from '../../assets/banner-girl.png';
+type RoomData = {
+  id: string;
+  title: string;
+  primary_color: string;
+  secondary_color: string;
+};
 
 export function CreateEvent() {
+  const history = useHistory();
+
+  const { signInUrl, authenticatedUser } = useContext(AuthContext);
+
   const [eventName, setEventName] = useState('');
-  const [primaryColor, setPrimaryColor] = useState('');
-  const [secondaryColor, setSecondaryColor] = useState('');
+  const [primaryColor, setPrimaryColor] = useState('#ff4500');
+  const [secondaryColor, setSecondaryColor] = useState('#fb1528');
 
-  function handleLogoChange() {}
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: flameAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
-  function handleCreateEventForm() {}
+  useEffect(() => {
+    const page = '/new';
+    localStorage.setItem('@heat:page', page);
+  }, []);
+
+  async function handleCreateEventForm(event: FormEvent) {
+    event.preventDefault();
+
+    if (!authenticatedUser) {
+      alert('Efetue o login para criar um evento');
+      return;
+    }
+
+    if (eventName.trim() === '') {
+      alert('Adicione um nome ao evento');
+      return;
+    }
+
+    const { data } = await api.post<RoomData>('/rooms', {
+      title: eventName,
+      primary_color: primaryColor,
+      secondary_color: secondaryColor,
+    });
+
+    history.push(`/admin/events/${data.id}`);
+  }
 
   return (
     <Container>
@@ -33,23 +80,13 @@ export function CreateEvent() {
           <Title>Adicione as informações do seu evento</Title>
 
           <Form onSubmit={handleCreateEventForm}>
-            <LogoInput>
-              <img
-                src="https://github.com/Silvio-Ronaldo.png"
-                alt="Logo do evento"
-              />
-              <label htmlFor="avatar">
-                <VscDeviceCamera />
-
-                <input type="file" id="avatar" onChange={handleLogoChange} />
-              </label>
-            </LogoInput>
-
             <input
               type="text"
               id="eventName"
               name="eventName"
               placeholder="Qual o nome do evento?"
+              onChange={event => setEventName(event.target.value)}
+              value={eventName}
             />
 
             <Colors>
@@ -59,6 +96,8 @@ export function CreateEvent() {
                   type="color"
                   id="eventPrimaryColor"
                   name="eventPrimaryColor"
+                  onChange={event => setPrimaryColor(event.target.value)}
+                  value={primaryColor}
                 />
               </section>
 
@@ -68,16 +107,20 @@ export function CreateEvent() {
                   type="color"
                   id="eventSecondaryColor"
                   name="eventSecondaryColor"
+                  onChange={event => setSecondaryColor(event.target.value)}
+                  value={secondaryColor}
                 />
               </section>
             </Colors>
 
-            <button type="submit">Criar evento</button>
+            <button type="submit">CRIAR EVENTO</button>
           </Form>
         </section>
 
         <Illustration>
-          <img src={bannerGirl} alt="Girl on phone" />
+          <p>VAI PEGAR FOGO!</p>
+          <Lottie options={defaultOptions} height={300} width={300} />
+          {!authenticatedUser && <GithubSignIn href={signInUrl} />}
         </Illustration>
       </Content>
     </Container>
