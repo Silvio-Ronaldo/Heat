@@ -32,8 +32,8 @@ export function CreateEvent() {
   const { signInUrl, authenticatedUser } = useContext(AuthContext);
 
   const [eventName, setEventName] = useState('');
-  const [primaryColor, setPrimaryColor] = useState('');
-  const [secondaryColor, setSecondaryColor] = useState('');
+  const [primaryColor, setPrimaryColor] = useState('#ff4500');
+  const [secondaryColor, setSecondaryColor] = useState('#fb1528');
 
   const defaultOptions = {
     loop: true,
