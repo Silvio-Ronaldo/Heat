@@ -34,7 +34,8 @@ type AuthResponse = {
 export function AuthProvider({ children }: AuthProviderData) {
   const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(null);
 
-  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=75a335dd5e5b7f15b8ba`;
+  const GITHUB_CLIENT_ID = '75a335dd5e5b7f15b8ba'; // Id da aplicação OAuth do Github
+  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${GITHUB_CLIENT_ID}`;
 
   async function signIn(githubCode: string) {
     const response = await api.post<AuthResponse>('authenticate', {
